@@ -1,0 +1,61 @@
+$white:white !important;
+
+.bg-dark{
+    background-color: rgb(53, 110, 128);
+    color: $white
+}
+.bg-black{
+    background-color: rgb(61, 60, 60) !important;
+    color: $white
+}
+.mat-card{
+    @extend .bg-black;
+    border: 1px #565454 solid;
+}
+.custom-button{
+    border: 0px;
+    padding: 5px 10px;
+    margin: 5px;
+}
+.custom-button.yellow{
+    background-color: yellow;
+    color: black;
+}
+.custom-button.yellow:disabled{
+    background: #5e5a5a;
+    color: #9d9595;
+}
+.custom-button.dark{
+    background-color: rgb(53, 110, 128);
+    color: $white
+}
+.custom-button:hover{
+    background-color: rgb(36, 81, 95);
+}
+.ng-select{
+    margin-top: -20px !important;
+}
+.mat-grid-tile{
+    height: 100vh;
+    padding-top: 0px !important;
+    padding-left: 38px !important;
+}
+th.mat-header-cell:first-of-type,th.mat-header-cell{
+    background-color: black !important;
+    color: $white
+}
+table tr:nth-child(odd) td{
+    @extend .bg-dark;
+}
+table tr:nth-child(even) td, .mat-card>:last-child:not(.mat-card-footer){
+    @extend .bg-black;
+}
+.table-school{
+    margin-top: -7.5vw !important;
+}
+.mat-card{
+    overflow: auto;
+}
+.mat-select-arrow-wrapper{
+    color: $white
+}

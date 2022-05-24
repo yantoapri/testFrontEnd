@@ -1,0 +1,122 @@
+<mat-grid-list cols="2" rowHeight="2:2"  >
+  <mat-grid-tile >
+    <mat-card>
+      <div class=" w100 inline">
+           <div class="pt5">
+            <button class="custom-button right dark"><i class="fa fa-refresh"></i> Reset</button>
+            <button class="custom-button right dark"><i class="fa fa-file-csv"></i> Export CSV</button>
+           </div>
+            
+            <ng-select [(ngModel)]="corrector" class="col-4 right">
+              <ng-option *ngFor="let item of cross_corrector_option" [value]="item.school_correcting_corrector_id._id">{{item.school_correcting_corrector_id.first_name+' '+item.school_correcting_corrector_id.last_name}}</ng-option>
+            </ng-select>
+      </div>
+      <table mat-table class="w100" [dataSource]="dataSource">
+        
+        <ng-container matColumnDef="search_student">
+          <td mat-cell *matHeaderCellDef >
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Search" value="">
+            </mat-form-field>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="student_id">
+          <th mat-header-cell *matHeaderCellDef> Students </th>
+          <td mat-cell *matCellDef="let element"> {{element.student_id.first_name+' '+element.student_id.last_name}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="search_school">
+          <td mat-cell *matHeaderCellDef >
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Search" value="">
+            </mat-form-field>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="schools_origin_id">
+          <th mat-header-cell *matHeaderCellDef> School Origin </th>
+          <td mat-cell *matCellDef="let element"> {{element.school_origin_id.short_name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="search_correcting">
+          <td mat-cell *matHeaderCellDef >
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Search" value="">
+            </mat-form-field>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="school_correcting_id">
+          <th mat-header-cell *matHeaderCellDef> School Correcting </th>
+          <td mat-cell *matCellDef="let element; let i=index"> 
+            <ng-select [(ngModel)]="school_correcting[i]" (ngModelChange)="selectSchoolCorrecting($event)">
+              <ng-option  *ngFor="let item of school_option"  [value]="item.school._id">{{item.school.short_name}}</ng-option>
+            </ng-select>
+          </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="search_corrector">
+          <td mat-cell *matHeaderCellDef >
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Search" value="">
+            </mat-form-field>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="cross_corrector_id">
+          <th mat-header-cell *matHeaderCellDef>Cross Corrector </th>
+          <td mat-cell *matCellDef="let element; let i=index">
+            <ng-select [(ngModel)]="cross_corrector[i]"  (ngModelChange)="selectCorrector($event)">
+              <ng-option  *ngFor="let item of school_correcting_option"  [value]="item._id">{{item.full_name}}</ng-option>
+            </ng-select>
+          </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-header-row *matHeaderRowDef="['search_student','search_school','search_correcting','search_corrector']"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile class="table-school">
+    <mat-card>
+      <table mat-table class="w100" [dataSource]="dataSource1">
+    
+        <ng-container matColumnDef="short_name">
+          <th mat-header-cell *matHeaderCellDef> Schools</th>
+          <td mat-cell *matCellDef="let element"> {{element.short_name}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="students">
+          <th mat-header-cell *matHeaderCellDef> Students </th>
+          <td mat-cell *matCellDef="let element"> {{element.students}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="correction">
+          <th mat-header-cell *matHeaderCellDef> Correction</th>
+          <td mat-cell *matCellDef="let element"> {{element.correction}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="diff">
+          <th mat-header-cell *matHeaderCellDef> Diff </th>
+          <td mat-cell *matCellDef="let element"> {{element.students-element.correction}} </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+<button class="custom-button yellow right" disabled>
+  <i class="fa fa-send"></i> Save Notificated
+</button>
+<button class="custom-button yellow right">
+  <i class="fa fa-share"></i> Save & Leave
+</button>
+<button class="custom-button yellow right">
+  <i class="fa fa-save"></i> Save
+</button>

@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@ng-select/ng-select/themes/material.theme.css";
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: rgb(61, 60, 60); }
+
+$w100:100%;
+$w50:50%;
+
+.w100{
+    width: $w100;
+}
+.p1{
+    padding: 10px;
+}
+.right{
+    float: right;
+}
+.row{
+    flex: 0 0 auto;
+    width: $w100;
+}
+.col-4{
+    width: 30%;
+}
+.col-6{
+    width: $w50;
+}
+.inline{
+    display: inline;
+}
+.pt5{
+    padding-top: 20px;
+}
